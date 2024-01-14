@@ -1,0 +1,64 @@
+## Mlx related
+minilibx/mlx-linux/Makefile.gen
+minilibx/mlx-linux/test/mlx-test
+## Editor
+minilibx/mlx-linux/.vscode/*
+minilibx/mlx-linux/*~
+minilibx/mlx-linux/\#*\#
+
+## Other
+minilibx/mlx-linux/.DS_STORE
+
+## Template from https://github.com/github/gitignore
+# Prerequisites
+minilibx/mlx-linux/*.d
+
+# Object files
+minilibx/mlx-linux/*.o
+minilibx/mlx-linux/*.ko
+minilibx/mlx-linux/*.obj
+minilibx/mlx-linux/*.elf
+
+# Linker output
+minilibx/mlx-linux/*.ilk
+minilibx/mlx-linux/*.map
+minilibx/mlx-linux/*.exp
+
+# Precompiled Headers
+minilibx/mlx-linux/*.gch
+minilibx/mlx-linux/*.pch
+
+# Libraries
+minilibx/mlx-linux/*.lib
+minilibx/mlx-linux/*.a
+minilibx/mlx-linux/*.la
+minilibx/mlx-linux/*.lo
+
+# Shared objects (inc. Windows DLLs)
+minilibx/mlx-linux/*.dll
+minilibx/mlx-linux/*.so
+minilibx/mlx-linux/*.so.*
+minilibx/mlx-linux/*.dylib
+
+# Executables
+minilibx/mlx-linux/*.exe
+minilibx/mlx-linux/*.out
+minilibx/mlx-linux/*.app
+minilibx/mlx-linux/*.i*86
+minilibx/mlx-linux/*.x86_64
+minilibx/mlx-linux/*.hex
+
+# Debug files
+minilibx/mlx-linux/*.dSYM/
+minilibx/mlx-linux/*.su
+minilibx/mlx-linux/*.idb
+minilibx/mlx-linux/*.pdb
+
+# Kernel Module Compile Results
+minilibx/mlx-linux/*.mod*
+minilibx/mlx-linux/*.cmd
+minilibx/mlx-linux/.tmp_versions/
+minilibx/mlx-linux/modules.order
+minilibx/mlx-linux/Module.symvers
+minilibx/mlx-linux/Mkfile.old
+minilibx/mlx-linux/dkms.conf
