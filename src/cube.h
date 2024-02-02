@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:00:41 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/02/01 16:28:59 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:30:42 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "./control/control.h"
 # include "./parser/parser.h"
 # include "./render/render.h"
+# include "./utill/utill.h"
 
 
 #endif

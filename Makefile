@@ -2,7 +2,7 @@ NAME = cube3d
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra 
+#CFLAGS = -Wall -Werror -Wextra 
 
 MLXFLAGS_LINUX = -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz
 
@@ -21,13 +21,13 @@ CONTROL_FILE = control_main.c key_hook.c
 
 RENDER_DIR = ./src/render/
 PARSER_DIR = ./src/parser/
-CONTROL_FILE = ./src/control/
+CONTROL_DIR = ./src/control/
 UTILL_DIR = ./src/utill/
 
 RENDER_SRC = $(addprefix $(RENDER_DIR), $(RENDER_FILE))
 PARSER_SRC = $(addprefix $(PARSER_DIR), $(PARSER_FILE))
 CONTROL_SRC = $(addprefix $(CONTROL_DIR), $(CONTROL_FILE))
-UTILL_SRC = $(addprefix $(UTILL_DIR), $(UTILL_FILE)) $(LIBFT_SRC)
+UTILL_SRC = $(addprefix $(UTILL_DIR), $(UTILL_FILE))
 
 LIBFT_DIR = ./src/utill/libft/
 LIBFT_SRC = $(addprefix $(LIBFT_DIR), $(LIBFT_FILE))
@@ -44,12 +44,12 @@ SRC =  $(RENDER_SRC) $(PARSER_SRC) $(CONTROL_SRC) $(UTILL_SRC) $(LIBFT_SRC) ./sr
 OBJ = $(SRC:.c=.o)
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -I/usr/include -I$(MLX_DIR) -O3 -c $< -o $@
+	$(CC) $(CFLAGS) -I/usr/include -I$(MLX_DIR) -O3 -c $< -o $@
 
 all : $(NAME)
 
 $(NAME) : ${OBJ} ${MLXLIB}
-	$(CC) $(CFLAGS) $(OBJ) $(MLXFLAGS) -o ${NAME}
+	$(CC) $(CFLAGS) $(OBJ) $(MLXFLAGS_LINUX) -o ${NAME}
 
 clean :
 	$(RM) $(OBJ)
