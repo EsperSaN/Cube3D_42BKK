@@ -1,12 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   control_main.c                                     :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: pruenrua <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 16:52:39 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/01/14 16:52:39 by pruenrua         ###   ########.fr       */
+/*   Created: 2022/08/06 09:01:24 by pruenrua          #+#    #+#             */
+/*   Updated: 2022/08/31 20:16:27 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (0);
+}

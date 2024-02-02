@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube.h                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 12:00:41 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/02/01 16:28:59 by pruenrua         ###   ########.fr       */
+/*   Created: 2022/08/15 10:09:36 by pruenrua          #+#    #+#             */
+/*   Updated: 2024/01/01 18:08:06 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef CUBE_H
-# define CUBE_H
+#include "libft.h"
 
-# include <stdio.h>
-# include "../minilibx/mlx-linux/mlx.h"
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include "./control/control.h"
-# include "./parser/parser.h"
-# include "./render/render.h"
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*j_str;
+	char	*str_joined;
 
-
-#endif
+	if (!s1 || !s2)
+		return (0);
+	j_str = malloc((ft_strlen(s1) + ft_strlen(s2)) + 1);
+	if (!j_str)
+		return (0);
+	str_joined = j_str;
+	while (*s1)
+	{
+		*j_str = *s1;
+		s1++;
+		j_str++;
+	}
+	while (*s2)
+	{
+		*j_str = *s2;
+		s2++;
+		j_str++;
+	}
+	*j_str = '\0';
+	return (str_joined);
+}

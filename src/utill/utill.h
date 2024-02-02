@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube.h                                             :+:      :+:    :+:   */
+/*   utill.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 12:00:41 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/02/01 16:28:59 by pruenrua         ###   ########.fr       */
+/*   Created: 2024/01/30 12:04:15 by pruenrua          #+#    #+#             */
+/*   Updated: 2024/01/30 12:20:50 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef CUBE_H
-# define CUBE_H
+#ifndef UTILL_H
+# define UTILL_H
 
-# include <stdio.h>
-# include "../minilibx/mlx-linux/mlx.h"
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include "./control/control.h"
-# include "./parser/parser.h"
-# include "./render/render.h"
-
+# include "../cube.h"
+# include "./libft/libft.h"
 
 #endif

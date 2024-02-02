@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube.h                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 12:00:41 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/02/01 16:28:59 by pruenrua         ###   ########.fr       */
+/*   Created: 2022/08/12 15:43:39 by pruenrua          #+#    #+#             */
+/*   Updated: 2024/01/05 14:39:17 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef CUBE_H
-# define CUBE_H
+#include "libft.h"
 
-# include <stdio.h>
-# include "../minilibx/mlx-linux/mlx.h"
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include "./control/control.h"
-# include "./parser/parser.h"
-# include "./render/render.h"
+char	*ft_strdup(const char *s1)
+{
+	char	*cp;
+	char	*tcp;
 
-
-#endif
+	if (!s1)
+		return (NULL);
+	cp = (char *)malloc(sizeof (char) * ft_strlen(s1) + 1);
+	if (cp == NULL)
+		return (NULL);
+	tcp = cp;
+	while (*s1)
+	{
+		*tcp = *s1;
+		tcp++;
+		s1++;
+	}
+	*tcp = '\0';
+	return (cp);
+}

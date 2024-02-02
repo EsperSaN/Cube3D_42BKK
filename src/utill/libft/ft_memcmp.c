@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   control.h                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: pruenrua <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 16:54:48 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/01/30 12:06:49 by pruenrua         ###   ########.fr       */
+/*   Created: 2022/08/08 13:28:57 by pruenrua          #+#    #+#             */
+/*   Updated: 2022/08/31 21:01:48 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTROL_H
-#define CONTROL_H
+#include "libft.h"
 
-# include "../cube.h"
-
-#endif
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	while (n)
+	{
+		if ((*(unsigned char *)s1) != (*(unsigned char *)s2))
+			return (*(unsigned char *)s1 - *(unsigned char *)s2);
+		s1++;
+		s2++;
+		n--;
+	}
+	return (0);
+}

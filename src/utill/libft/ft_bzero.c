@@ -1,12 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   control_main.c                                     :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: pruenrua <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 16:52:39 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/01/14 16:52:39 by pruenrua         ###   ########.fr       */
+/*   Created: 2022/08/06 18:24:27 by pruenrua          #+#    #+#             */
+/*   Updated: 2022/08/31 19:23:20 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+void	ft_bzero(void *s, size_t n)
+{
+	while (n)
+	{
+		*(unsigned char *)s = 0;
+		s++;
+		n--;
+	}
+	return ;
+}

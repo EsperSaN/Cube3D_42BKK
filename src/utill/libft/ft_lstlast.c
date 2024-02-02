@@ -1,12 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   control_main.c                                     :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: pruenrua <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 16:52:39 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/01/14 16:52:39 by pruenrua         ###   ########.fr       */
+/*   Created: 2022/08/30 09:57:23 by pruenrua          #+#    #+#             */
+/*   Updated: 2022/08/31 20:53:46 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+t_list	*ft_lstlast(t_list *lst)
+{
+	while (lst && lst->next != NULL)
+	{
+		lst = lst->next;
+	}
+	return (lst);
+}

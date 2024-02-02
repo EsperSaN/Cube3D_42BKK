@@ -6,7 +6,13 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:54:40 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/01/14 16:54:41 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/01/30 12:05:23 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef RENDER_H
+# define RENDER_H
+
+# include "../cube.h"
+
+#endif
