@@ -6,13 +6,12 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:38:38 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/02/02 19:47:08 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/02/04 23:46:21 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 #define INVALID_ARG "No argument supplied"
-#define INVALID_FILE "The given file must contain .cub extention"
 
 int	main(int ac, char **av)
 {
@@ -21,11 +20,6 @@ int	main(int ac, char **av)
 	if (!is_right_extention(av[1]))
 		return (puterror(INVALID_FILE), 2);
 	printf("HELLO CUBE\n");*/
-
-	void *mlx, *win;
-
-	mlx = mlx_init();
-
-	win = mlx_new_window(mlx, 500, 500, "Hellod");
-	mlx_loop(mlx);
+	t_var data;
+	data.maps_data = maps_parser(&data, av[1]);
 }
