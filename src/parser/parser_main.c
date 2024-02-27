@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:44:11 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/02/15 17:40:43 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/02/27 11:15:00 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	is_file_valid(char *file_name)
 	return (puterror("File is Valid"), 1);
 }
 
-int	file_reader(t_var *data, int fd)
+int	file_reader(t_data *data, int fd)
 {
 	char	*tmp;
 	char	*data;
@@ -92,7 +92,7 @@ int	file_reader(t_var *data, int fd)
 	return (puterror("File Reader done."), 1);
 }
 
-int	maps_parser(t_var *data, char *file_name)
+int	maps_parser(t_data *data, char *file_name)
 {
 	int		fd;
 

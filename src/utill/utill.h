@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:04:15 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/02/04 23:17:12 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/02/27 11:21:42 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,6 @@
 # include "./libft/libft.h"
 
 void	puterror(char *error_msg);
+int		init_data(t_data *data);
+int		init_mlx(t_data *data, int screen_hight, int screen_width);
 #endif

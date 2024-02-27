@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:00:41 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/02/15 17:32:50 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/02/27 20:51:44 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,22 @@
 # else
 # include "../minilibx/mlx-linux/mlx.h"
 #endif
+#define INVALID_ARG "No argument supplied"
+#define FAIL 0
+#define SCREEN_HIGHT 600
+#define SCREEN_WIDTH 600
+#define WIN_TITLE "RAYCASTING"
+
+typedef struct s_frame_image
+{
+	void *image;
+	char *address;
+	int bpp; // bit per pixel
+	int line_length;
+	int endian;
+	int end_row;
+	int start_row;
+}	t_frame;
 
 typedef struct s_texture_data
 {
@@ -39,20 +55,24 @@ typedef struct s_map_data
 
 typedef struct s_variable
 {
+	int		posx;
+	int		posy;
 	void	*mlx;
 	void	*game_window;
 	void	*data_window;
 	char	**raw_data;
 	t_maps	*maps_data;
-}	t_var;
+}	t_data;
 
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <math.h>
 # include "./control/control.h"
 # include "./parser/parser.h"
 # include "./render/render.h"
 # include "./utill/utill.h"
+
 
 
 #endif
