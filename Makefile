@@ -15,7 +15,7 @@ MAIN_SRC = ./src/main.c
 
 UTILL_FILE = init_data.c put_error.c
 
-RENDER_FILE = render_main.c map_render.c 
+RENDER_FILE = render_main.c map_render.c draw_func.c
 
 PARSER_FILE = parser_main.c map_reader.c
 
@@ -62,7 +62,9 @@ endif
 
 RM = rm -rf
 
-SRC =  $(RENDER_SRC) $(PARSER_SRC) $(CONTROL_SRC) $(UTILL_SRC) $(LIBFT_SRC) $(MAIN_SRC)
+SRC =  $(RENDER_SRC) $(CONTROL_SRC) $(UTILL_SRC) $(LIBFT_SRC) $(MAIN_SRC)
+
+#$(PARSER_SRC)
 
 OBJ = $(SRC:.c=.o)
 

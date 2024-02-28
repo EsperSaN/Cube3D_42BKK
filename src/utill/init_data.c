@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:10:40 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/02/27 21:21:59 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/02/28 21:02:56 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ int	init_data(t_data *data)
 	data->game_window = NULL;
 	data->data_window = NULL;
 	data->raw_data = NULL;
+	data->a_key = 0;
+	data->s_key = 0;
+	data->d_key = 0;
+	data->w_key = 0;
 	data->maps_data = ft_calloc(sizeof(t_maps), 1);
 	data->maps_data->texture = ft_calloc(sizeof(t_texture), 1);
 	if (data->maps_data == NULL || data->maps_data->texture == NULL)

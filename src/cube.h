@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:00:41 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/02/27 20:51:44 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/02/28 20:28:45 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,16 @@
 #endif
 #define INVALID_ARG "No argument supplied"
 #define FAIL 0
-#define SCREEN_HIGHT 600
-#define SCREEN_WIDTH 600
+#define SCREEN_HIGHT 720
+#define SCREEN_WIDTH 1280
 #define WIN_TITLE "RAYCASTING"
+
+#define W 13
+#define A 0
+#define S 1
+#define D 2
+#define ESC 53
+#define PIXEL_SPEED 5
 
 typedef struct s_frame_image
 {
@@ -61,6 +68,10 @@ typedef struct s_variable
 	void	*game_window;
 	void	*data_window;
 	char	**raw_data;
+	int		w_key;
+	int		a_key;
+	int		s_key;
+	int		d_key;
 	t_maps	*maps_data;
 }	t_data;
 
