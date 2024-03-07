@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:54:45 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/02/27 11:14:56 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:26:14 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 
 # include "../cube.h"
 #define BUFFER_SIZE 1
-int	maps_parser(t_data *data, char *file_name);
+t_maps *maps_parser(char *file_name);
 #endif

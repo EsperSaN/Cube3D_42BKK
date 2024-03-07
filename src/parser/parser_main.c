@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:44:11 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/02/27 11:15:00 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/07 14:51:33 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	is_file_valid(char *file_name)
 	return (puterror("File is Valid"), 1);
 }
 
-int	file_reader(t_data *data, int fd)
+int	file_reader(t_maps *maps, int fd)
 {
 	char	*tmp;
 	char	*data;
@@ -80,32 +80,37 @@ int	file_reader(t_data *data, int fd)
 	{
 		tmp = data;
 		read_count = read(fd, buffer, BUFFER_SIZE);
-		data = ft_strjoin(tmp, buffer);
-		free(tmp);
+		if (read_count > 0)
+		{
+			data = ft_strjoin(tmp, buffer);
+			free(tmp);
+		}
 	}
 	if (read_count < -1)
 		perror("FILE READER : ");
-	data->raw_data = ft_split(data, '\n');
+	maps->maps_array = ft_split(data, '\n');
 	free(data);
-	if (data->raw_data == NULL)
+	if (maps->maps_array == NULL)
 		return (perror("Raw_data"), 0);
 	return (puterror("File Reader done."), 1);
 }
 
-int	maps_parser(t_data *data, char *file_name)
+t_maps	*maps_parser(char *file_name)
 {
 	int		fd;
+	t_maps	*maps_data;
 
+	maps_data = ft_calloc(sizeof(t_maps), 1);
 	if (!is_file_valid(file_name))
 		return (0);
 	fd = open(file_name, O_RDONLY | O_CLOEXEC);
 	if (fd < 0)
 		return (perror("PARSER ERROR : "), 0);
-	if (!file_reader(data, fd))
+	if (!file_reader(maps_data, fd))
 		return (puterror("VALID , READ : not right"), 0);
-	if (!is_mapdata_valid(data))
-		return (puterror("data in file not good"), 0);
-	if (!is_map_playable(data->maps_data))
-		return (puterror("maps is not playable"), 0);
-	return (1);
+	// if (!is_mapdata_valid(maps_data))
+	// 	return (puterror("data in file not good"), 0);
+	// if (!is_map_playable(maps_data))
+	// 	return (puterror("maps is not playable"), 0);
+	return (maps_data);
 }
