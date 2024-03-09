@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:52:39 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/07 10:28:12 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/09 18:26:52 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int key_press(int key_press, t_data *data)
 		data->key.left_key = PRESS;
 	if (key_press == RIGHT_ARROW)
 		data->key.right_key = PRESS;
-	data->key.is_keypress = 1;
+	if (key_press == M)
+		data->key.m_key = PRESS;
 }
 
 int key_release(int key_press, t_data *data)
@@ -52,8 +53,8 @@ int key_release(int key_press, t_data *data)
 		data->key.left_key = RELEASE;
 	if (key_press == RIGHT_ARROW)
 		data->key.right_key = RELEASE;
-	data->key.is_keypress = 0;
-
+	if (key_press == M)
+		data->key.m_key = RELEASE;
 	if (key_press == ESC)
 		close_game(data);
 }
@@ -61,8 +62,8 @@ int key_release(int key_press, t_data *data)
 int control(t_data *data)
 {
 	mlx_do_key_autorepeatoff(data->mlx);
-	mlx_hook(data->data_window, ON_KEYDOWN, KEYPRESSMASK, key_press, data);
-	mlx_hook(data->data_window, ON_KEYUP, KEYRELEASEMASK, key_release, data);
-	mlx_hook(data->data_window, ON_DESTROY, 0L, close_game, data);
+	mlx_hook(data->game_window, ON_KEYDOWN, KEYPRESSMASK, key_press, data);
+	mlx_hook(data->game_window, ON_KEYUP, KEYRELEASEMASK, key_release, data);
+	mlx_hook(data->game_window, ON_DESTROY, 0L, close_game, data);
 }
 

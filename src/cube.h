@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:00:41 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/07 17:44:09 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/09 22:56:01 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,28 @@
 # define CUBE_H
 
 # include <stdio.h>
-
-# ifdef __APPLE__
-# include "../minilibx/mlx-mac/mlx.h"
-# else
-# include "../minilibx/mlx-linux/mlx.h"
+# include "../lib/MLX42_codam/include/MLX42/MLX42.h"
+#ifdef __APPLE__
+# define W 13
+# define A 0
+# define S 1
+# define D 2
+# define M 46
+# define LEFT_ARROW 123
+# define RIGHT_ARROW 124
+# define ESC 53
 #endif
-#define INVALID_ARG "No argument supplied"
-#define FAIL 0
-#define SCREEN_HIGHT 800
-#define SCREEN_WIDTH 800
-#define MINIMAPS_SCALE 20
-#define WIN_TITLE "RAYCASTING"
 
-#define W 13
-#define A 0
-#define S 1
-#define D 2
-#define LEFT_ARROW 123
-#define RIGHT_ARROW 124
-#define ESC 53
+# define INVALID_ARG "No argument supplied"
+# define FAIL 0
+# define SCREEN_HIGHT 800
+# define SCREEN_WIDTH 800
+# define MINIMAPS_SCALE 20
+# define WIN_TITLE "RAYCASTING"
+
 #define PIXEL_SPEED 2
 #define ROTATE_SPEED 1
-#define PI 3.14
+#define PI 3.14123456789098765432123456789876543212345678909876543f
 
 
 typedef struct s_positon
@@ -89,9 +88,9 @@ typedef struct s_keybind
 	int		a_key;
 	int		s_key;
 	int		d_key;
+	int		m_key;
 	int		left_key;
 	int		right_key;
-	int		is_keypress;
 }	t_key;
 
 typedef	struct s_player_data
@@ -114,10 +113,10 @@ typedef struct s_variable
 # include <fcntl.h>
 # include <unistd.h>
 # include <math.h>
-# include "./control/control.h"
-# include "./parser/parser.h"
-# include "./render/render.h"
-# include "./utill/utill.h"
+// # include "./control/control.h"
+// # include "./parser/parser.h"
+// # include "./render/render.h"
+// # include "./utill/utill.h"
 
 
 
