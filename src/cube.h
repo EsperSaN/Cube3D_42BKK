@@ -31,10 +31,19 @@ typedef struct s_texture_data
 	int		ceil[3];
 }	t_texture;
 
+typedef struct s_pair
+{
+	int		x;
+	int		y;
+}	t_pair;
+
 typedef struct s_map_data
 {
 	char		**maps_array;
+	int			maps_height;
+	int			maps_width;
 	t_texture	*texture;
+	t_pair		player_pos;
 }	t_maps;
 
 typedef struct s_variable
@@ -45,7 +54,7 @@ typedef struct s_variable
 	char	**raw_data;
 	t_maps	*maps_data;
 }	t_var;
-
+#define TEX_MAX 63
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
