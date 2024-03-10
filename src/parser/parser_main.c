@@ -98,33 +98,37 @@ int ft_is_map (char *str)
 	return (1);
 }
 
-void	ft_check_border(char **array, int x, int y)
+void	ft_floodfill_util(t_var *data, char **array, int x, int y)
 {
-	
-}
+	int h=data->maps_data->maps_height;
+	int w=data->maps_data->maps_width;
 
-void	ft_floodfill_util(char **array, int x, int y)
-{
-	if (array[x][y] && (array[x][y] != 'x' && array[x][y] != '0' 
-		&& array[x][y] != '1' && array[x][y] != 'E' && array[x][y] != 'N'
-		&& array[x][y] != 'S' && array[x][y] != 'W'))
+	if (array[x][y] == '8')
+	{
 		printf("MAP not good [%c]\n", array[x][y]);
+		data->maps_data->fl_status = 0;
+	}
+	if (array[x][y] == '0' && (x == 0 || y == 0 || y == w-1 || x == h-1))
+	{
+		printf("MAP not good [%c] %d %d\n", array[x][y] ,x, y);
+		data->maps_data->fl_status = 0;
+	}
 	if (array[x][y] && array[x][y] == '0')
 	{
 		array[x][y] = 'x';
-		ft_floodfill_util(array, x + 1, y);
-		ft_floodfill_util(array, x - 1, y);
-		ft_floodfill_util(array, x, y + 1);
-		ft_floodfill_util(array, x, y - 1);
+		ft_floodfill_util(data, array, x + 1, y);
+		ft_floodfill_util(data, array, x - 1, y);
+		ft_floodfill_util(data, array, x, y + 1);
+		ft_floodfill_util(data, array, x, y - 1);
 	}
 }
 
-void	ft_floodfill(t_var *data)
+void	ft_floodfill(t_var *data, char **array)
 {
 	int y=data->maps_data->player_pos.y;
 	int x=data->maps_data->player_pos.x;
 	//printf("%c\n", data->maps_data->maps_array[y][x]);
-	ft_floodfill_util(data->maps_data->maps_array, x, y);
+	ft_floodfill_util(data, array, x, y);
 }
 
 int is_mapdata_valid(t_var *data)
@@ -345,17 +349,59 @@ int is_mapdata_valid(t_var *data)
 
 	printf("width = [%d]\n",data->maps_data->maps_width);
 	printf("height = [%d]\n",data->maps_data->maps_height);
-	printf("pos x = [%d]\n", data->maps_data->player_pos.x);
-	printf("pos y = [%d]\n", data->maps_data->player_pos.y);
 
-	ft_floodfill(data);
+	char **new_map;
+	new_map = (char **)malloc((sizeof(char *)) * (data->maps_data->maps_height + 1));
+	i = 0;
+	while(i < data->maps_data->maps_height)
+	{
+		j = 0;
+		new_map[i] = (char *)malloc((sizeof(char)) * (data->maps_data->maps_width + 1));
+		while(j < data->maps_data->maps_width)
+		{
+			//printf("%c", data->maps_data->maps_array[i][j]);
+			if (data->maps_data->maps_array[i][j] && data->maps_data->maps_array[i][j] != ' ')
+			  	new_map[i][j] = data->maps_data->maps_array[i][j];
+			else
+			 	new_map[i][j] = '8';
+			j++;
+		}
+		new_map[i][j] = '\0';
+		//printf("\n");
+		i++;
+	}
+	new_map[i] = NULL;
 
 	i = 0;
 	while(data->maps_data->maps_array[i])
 	{
-		printf("[%s] <%zu>\n", data->maps_data->maps_array[i], ft_strlen(data->maps_data->maps_array[i]));
+		j = 0;
+		while(j < data->maps_data->maps_width)
+		{
+			printf("%c", new_map[i][j]);
+			j++;
+		}
+		printf("\n");
 		i++;
 	}
+
+	printf("pos x = [%d]\n", data->maps_data->player_pos.x);
+	printf("pos y = [%d]\n", data->maps_data->player_pos.y);
+
+	data->maps_data->fl_status = 1;
+	ft_floodfill(data, new_map);
+	
+	if (data->maps_data->fl_status)
+		printf("yay nice map\n");
+	else
+		return (0);
+
+	// i = 0;
+	// while(data->maps_data->maps_array[i])
+	// {
+	// 	printf("[%s] <%zu>\n", new_map[i], ft_strlen(data->maps_data->maps_array[i]));
+	// 	i++;
+	// }
 	//to map check
 
 		// color only int

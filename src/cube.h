@@ -42,6 +42,7 @@ typedef struct s_map_data
 	char		**maps_array;
 	int			maps_height;
 	int			maps_width;
+	int			fl_status;
 	t_texture	*texture;
 	t_pair		player_pos;
 }	t_maps;
