@@ -11,9 +11,13 @@
 /* ************************************************************************** */
 
 #include "./cube.h"
-
-int	main(int ac, char **av)
+#include "../lib/MLX42_codam/include/MLX42/MLX42.h"
+int	main()
 {
+
+	ft_putstr_fd("hello", 2);
+	mlx_t *mlx = mlx_init(200,200, "hello", true);
+	mlx_loop(mlx);
 	return(1);
 	// void *img = mlx_png_file_to_image(data.mlx, "./test.png",&w,&h);
 	// printf("%s , ", (char* )img);

@@ -6,7 +6,7 @@
 /*   By: pruenrua <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 09:40:42 by pruenrua          #+#    #+#             */
-/*   Updated: 2022/08/31 21:17:14 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/10 20:00:13 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# ifndef SIZE_MAX
+#define SIZE_MAX __SIZE_MAX__
+#endif
 typedef struct s_list
 {
 	void			*content;

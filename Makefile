@@ -2,7 +2,7 @@ NAME = cub3d
 
 CC = clang
 
-CLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
 
 SRC_DIR = ./src/
 
@@ -11,12 +11,13 @@ LIB_MLX_DIR = $(LIB_DIR)MLX42_codam/
 LIB_FT_DIR = $(LIB_DIR)libft/
 LIB_FILE = $(LIB_FT_DIR)libft.a $(LIB_MLX_DIR)build/libmlx42.a
 
-LIB_LINK = -L$(LIB_FT_DIR) -L$(LIB_MLX_DIR)
-INCLUDE_FLAG = -I$(LIB_FT_DIR) -I$(LIB_MLX_DIR)/include
+LIB_LINK = -L$(LIB_FT_DIR) -L$(LIB_MLX_DIR)build
+INCLUDE_FLAG = -I$(LIB_FT_DIR) -I$(LIB_MLX_DIR)build
+# INCLUDE_FLAG = -Ilibft -Ilibmlx42 // need to clarify this
 
 UNAME = $(shell uname)
 ifeq ($(UNAME), Linux)
-MLXLINK_FLAG = -ldl -lglfw3 -pthread -lm
+MLXLINK_FLAG = -ldl -lglfw -pthread -lm
 else ifeq ($(UNAME), Darwin)
 MLXLINK_FLAG = -framework Cocoa -framework OpenGL -framework IOKit -L/opt/homebrew/opt/glfw/lib -lglfw
 else
@@ -33,14 +34,13 @@ OBJS = $(SRCS:.c=.o)
 all : libft libmlx $(NAME)
 
 libft :
-	make -C $(LIB_FT_DIR)
+	@make -C $(LIB_FT_DIR)
 
 libmlx :
-	@cmake $(LIB_MLX_DIR) -B $(LIB_MLX_DIR)build
-	make -C $(LIB_MLX_DIR)/build -j4
+	@cmake $(LIB_MLX_DIR) -B $(LIB_MLX_DIR)build && make -C $(LIB_MLX_DIR)build -j4
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $(LIB_FILE) $(LIB_LINK) $(MLXLINK_FLAG) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIB_FILE) $(LIB_LINK) $(MLXLINK_FLAG)
 
 clean :
 	rm -f $(OBJS)

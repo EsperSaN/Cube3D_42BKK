@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include "../lib/MLX42_codam/include/MLX42/MLX42.h"
+# include "../lib/libft/libft.h"
 #ifdef __APPLE__
 # define W 13
 # define A 0
