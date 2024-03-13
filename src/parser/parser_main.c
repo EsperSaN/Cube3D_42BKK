@@ -16,6 +16,23 @@
 #define WIDTH 1
 #define FILE_EXT ".cub"
 
+int ft_is_map (char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '0' || str[i] == '1' || str[i] == 'N'
+		|| str[i] == 'S' || str[i] == 'E' || str[i] == 'W'
+		|| str[i] == ' ')
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
+
 int	is_same_str(char *s1, char *s2)
 {
 	int	ret;
@@ -33,6 +50,40 @@ int	is_same_str(char *s1, char *s2)
 	if (*s1 != '\0' || *s2 != '\0')
 		ret = 0;
 	return (ret);
+}
+
+int	ft_check_endl(char *str)
+{
+	int	i;
+	int	j;
+	int	len;
+	int flag;
+	char *tmp;
+
+	flag = 0;
+	i = 0;
+	j = 0;
+	while(str[i])
+	{
+		if (str[i] == '\n')
+		{
+			len = i - j - 1;
+			if (len < 0)
+				len = 0;
+			tmp = ft_substr(str, j, len);
+			//printf("[%s]\n", tmp);
+			if(ft_is_map(tmp) && len > 0)
+				flag = 1;
+			//printf("%d %d\n", len, flag);
+			if(len == 0 && flag)
+				return(0);
+			j = i + 1;
+			free(tmp);
+		}
+
+		i++;
+	}
+	return(1);
 }
 
 int	ft_get_color(t_var *data, char *str, int mode)
@@ -79,23 +130,6 @@ int	ft_isspace(char c)
 	else if (c == '\v' || c == '\t' || c == ' ' )
 		return (1);
 	return (0);
-}
-
-int ft_is_map (char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '0' || str[i] == '1' || str[i] == 'N'
-		|| str[i] == 'S' || str[i] == 'E' || str[i] == 'W'
-		|| str[i] == ' ')
-			i++;
-		else
-			return (0);
-	}
-	return (1);
 }
 
 void	ft_floodfill_util(t_var *data, char **array, int x, int y)
@@ -390,38 +424,38 @@ int is_mapdata_valid(t_var *data)
 
 	data->maps_data->fl_status = 1;
 	ft_floodfill(data, new_map);
-	
+
 	if (data->maps_data->fl_status)
 		printf("yay nice map\n");
 	else
 		return (0);
 
-	// i = 0;
-	// while(data->maps_data->maps_array[i])
-	// {
-	// 	printf("[%s] <%zu>\n", new_map[i], ft_strlen(data->maps_data->maps_array[i]));
-	// 	i++;
-	// }
+	i = 0;
+	while(data->maps_data->maps_array[i])
+	{
+		printf("[%s] <%zu>\n", data->maps_data->maps_array[i], ft_strlen(data->maps_data->maps_array[i]));
+		i++;
+	}
 	//to map check
 
-		// color only int
-		//possible char and it's limitation
+		// color only int DONE
+		//possible char and it's limitation DONE
 		// while (map[i])
 		// {
 		// 	while (map[i][j])
 		// 	{
-		// 		//check char
+		// 		//check char DONE
 		// 		/* code */
 		// 	}
 			
 		// 	/* code */
 		// }
 		
-		//surrounded by wall
-		//floodfill_check?
-		//order of elements
-		//space between elements
-		//save data (size, 2d array)
+		//surrounded by wall DONE
+		//floodfill_check? DONE
+		//order of elements DONE
+		//space between elements DONE
+		//save data (size, 2d array) DONE
 
 		return (1);
 }
@@ -477,6 +511,12 @@ int	file_reader(t_var *data, int fd)
 	if (read_count < -1)
 		perror("FILE READER : ");
 	data->raw_data = ft_split(chdata, '\n');
+	if(ft_check_endl(chdata) == 0)
+	{
+		//printf("Empty line between map\n");
+		free(chdata);
+		return (perror("Empty line between map"), 0);
+	}
 	free(chdata);
 	if (data->raw_data == NULL)
 		return (perror("Raw_data"), 0);
