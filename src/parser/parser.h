@@ -15,5 +15,6 @@
 
 # include "../cube.h"
 #define BUFFER_SIZE 1
-t_maps *maps_parser(char *file_name);
+
+t_maps *maps_parser(t_var *data, char *file_name);
 #endif

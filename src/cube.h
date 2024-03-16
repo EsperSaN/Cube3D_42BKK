@@ -59,13 +59,21 @@ typedef struct s_texture_data
 	int		ceil[3];
 }	t_texture;
 
+typedef struct s_pair
+{
+	int		x;
+	int		y;
+}	t_pair;
+
 typedef struct s_map_data
 {
 	char		**maps_array;
-	int			maps_width;
-	int			maps_hight;
 	char		**raw_data;
+	int			maps_height;
+	int			maps_width;
+	int			fl_status;
 	t_texture	*texture;
+	t_pair		player_pos;
 }	t_maps;
 
 
@@ -104,6 +112,7 @@ typedef struct s_variable
 	mlx_image_t	*game_frm;
 	t_maps		*maps_data;
 }	t_data;
+
 # include "./setting.h"
 # include "./control/control.h"
 # include "./parser/parser.h"
