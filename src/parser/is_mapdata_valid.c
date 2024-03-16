@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:54:21 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/17 00:57:27 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/17 01:19:26 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,42 +48,42 @@ int	is_same_str(char *s1, char *s2)
 	return (ret);
 }
 
-int is_mapdata_valid(t_data *data)
+int	is_mapdata_valid(t_data *data)
 {
-	int i;
-	int j;
-	char **str;
-	t_maps	*maps;
+	int			i;
+	int			j;
+	int			k;
+	char		**str;
+	t_maps		*maps;
+	t_texture	*texture;
+
 	maps = ft_calloc(sizeof(t_maps), 1);
 	data->maps_data = maps;
-	t_texture *texture;
 	texture = ft_calloc(sizeof(t_texture), 1);
 	data->maps_data->texture = texture;
-
 	data->maps_data->texture->floor[0] = -1;
 	data->maps_data->texture->floor[1] = -1;
 	data->maps_data->texture->floor[2] = -1;
 	data->maps_data->texture->ceil[0] = -1;
 	data->maps_data->texture->ceil[1] = -1;
 	data->maps_data->texture->ceil[2] = -1;
-	
 	i = 0;
-	int k = 0;
-	while(data->raw_data[i])
+	k = 0;
+	while (data->raw_data[i])
 	{
 		j = 0;
 		while (data->raw_data[i][j])
 		{
 			if (!ft_isspace(data->raw_data[i][j]))
-				break;
+				break ;
 			j++;
 		}
 		if (j == ft_strlen(data->raw_data[i]))
 			return (0);//error space only
-		if(!ft_is_map(data->raw_data[i]))
+		if (!ft_is_map(data->raw_data[i]))
 			k++;
 		else
-			break;
+			break ;
 		i++;
 	}
 	if (k != 6)
@@ -92,7 +92,6 @@ int is_mapdata_valid(t_data *data)
 	//each element is readable
 		//file size and dimension
 	i = 0;
-	
 	while(data->raw_data[i])
 	{
 		// split with " " then use next index if it equal to "NO" DONE
@@ -102,10 +101,10 @@ int is_mapdata_valid(t_data *data)
 		{
 			j++;
 		}
-		if (j!=2)
-			break;//more than 2 elements
+		if (j != 2)
+			break ;//more than 2 elements
 		j = 0;
-		while(str[j] && k)
+		while (str[j] && k)
 		{
 			//check null before assign DONE
 				//case "NO NO ./path_to_the_north_texture" throw error
@@ -118,9 +117,9 @@ int is_mapdata_valid(t_data *data)
 				else
 				{
 					data->maps_data->texture->north = str[j+1];
-					break;
+					break ;
 				}
-			}	
+			}
 			else if (is_same_str(str[j], "SO"))
 			{
 				if (data->maps_data->texture->south)
@@ -128,7 +127,7 @@ int is_mapdata_valid(t_data *data)
 				else
 				{
 					data->maps_data->texture->south = str[j+1];
-					break;
+					break ;
 				}
 			}
 			else if (is_same_str(str[j], "WE"))
@@ -138,7 +137,7 @@ int is_mapdata_valid(t_data *data)
 				else
 				{
 					data->maps_data->texture->west = str[j+1];
-					break;
+					break ;
 				}
 			}
 			else if (is_same_str(str[j], "EA"))
@@ -148,23 +147,23 @@ int is_mapdata_valid(t_data *data)
 				else
 				{
 					data->maps_data->texture->east = str[j+1];
-					break;
+					break ;
 				}
 			}
 			else if (is_same_str(str[j], "F"))
 			{
 				//get num count it -> check it -> assign DONE
-				if(!ft_get_color(data, str[j+1], 'f'))
+				if (!ft_get_color(data, str[j+1], 'f'))
 					return (0);//error assign
-				break;
+				break ;
 					//case "color 255, 0,0" throw error yay
 			}
 			else if (is_same_str(str[j], "C"))
 			{
 				//get num count it -> check it -> assign
-				if(!ft_get_color(data, str[j+1], 'c'))
+				if (!ft_get_color(data, str[j+1], 'c'))
 					return (0);//error assign
-				break;
+				break ;
 					//case "color 255, 0,0" throw error yay
 			}
 			else
@@ -202,23 +201,21 @@ int is_mapdata_valid(t_data *data)
 	// 	return (1);
 	// else
 	// 	return (0);//error missing some data
-
 	i = 6;
 	k = 0;
-	while(data->raw_data[i])
+	while (data->raw_data[i])
 	{
 		j = 0;
-		while(data->raw_data[i][j])
+		while (data->raw_data[i][j])
 		{
-			if (data->raw_data[i][j] == 'N' || data->raw_data[i][j] == 'S' 
+			if (data->raw_data[i][j] == 'N' || data->raw_data[i][j] == 'S'
 				|| data->raw_data[i][j] == 'E' || data->raw_data[i][j] == 'W')
-				{
-					k++;
-					data->maps_data->player_pos.y = i - 6;
-					data->maps_data->player_pos.x = j;
-
-				}
-			if (k>1)
+			{
+				k++;
+				data->maps_data->player_pos.y = i - 6;
+				data->maps_data->player_pos.x = j;
+			}
+			if (k > 1)
 				return (0);//error duplicate spawn
 			j++;
 		}
@@ -227,7 +224,7 @@ int is_mapdata_valid(t_data *data)
 	}
 	i = 6;
 	k = 0;
-	while(data->raw_data[i])
+	while (data->raw_data[i])
 	{
 		if (!ft_is_map(data->raw_data[i]))
 			return (0);//not 0 1 (ewns)   //CHECK DUP SPAWN
@@ -242,7 +239,7 @@ int is_mapdata_valid(t_data *data)
 	i = 6;
 	k = 0;
 	k = ft_strlen(data->raw_data[i]);
-	while(data->raw_data[i])
+	while (data->raw_data[i])
 	{
 		if (ft_strlen(data->raw_data[i]) > k)
 		{
@@ -252,29 +249,27 @@ int is_mapdata_valid(t_data *data)
 	}
 	data->maps_data->maps_width = k;
 	i = 0;
-	while(data->raw_data[i])
+	while (data->raw_data[i])
 	{
 		data->maps_data->maps_array[i] = data->raw_data[i+6];
 		i++;
 	}
 	i = 0;
-	while(data->maps_data->maps_array[i])
+	while (data->maps_data->maps_array[i])
 	{
 		printf("[%s] <%zu>\n", data->maps_data->maps_array[i], ft_strlen(data->maps_data->maps_array[i]));
 		i++;
 	}
-
 	printf("width = [%d]\n",data->maps_data->maps_width);
 	printf("height = [%d]\n",data->maps_data->maps_height);
-
 	char **new_map;
 	new_map = (char **)malloc((sizeof(char *)) * (data->maps_data->maps_height + 1));
 	i = 0;
-	while(i < data->maps_data->maps_height)
+	while (i < data->maps_data->maps_height)
 	{
 		j = 0;
 		new_map[i] = (char *)malloc((sizeof(char)) * (data->maps_data->maps_width + 1));
-		while(j < data->maps_data->maps_width)
+		while (j < data->maps_data->maps_width)
 		{
 			//printf("%c", data->maps_data->maps_array[i][j]);
 			if (data->maps_data->maps_array[i][j] && data->maps_data->maps_array[i][j] != ' ')
@@ -288,12 +283,11 @@ int is_mapdata_valid(t_data *data)
 		i++;
 	}
 	new_map[i] = NULL;
-
 	i = 0;
 	while(data->maps_data->maps_array[i])
 	{
 		j = 0;
-		while(j < data->maps_data->maps_width)
+		while (j < data->maps_data->maps_width)
 		{
 			printf("%c", new_map[i][j]);
 			j++;
@@ -301,20 +295,16 @@ int is_mapdata_valid(t_data *data)
 		printf("\n");
 		i++;
 	}
-
 	printf("pos x = [%d]\n", data->maps_data->player_pos.x);
 	printf("pos y = [%d]\n", data->maps_data->player_pos.y);
-
 	data->maps_data->fl_status = 1;
 	ft_floodfill(data, new_map);
-
 	if (data->maps_data->fl_status)
 		printf("yay nice map\n");
 	else
 		return (0);
-
 	i = 0;
-	while(data->maps_data->maps_array[i])
+	while (data->maps_data->maps_array[i])
 	{
 		printf("[%s] <%zu>\n", data->maps_data->maps_array[i], ft_strlen(data->maps_data->maps_array[i]));
 		i++;
@@ -330,15 +320,12 @@ int is_mapdata_valid(t_data *data)
 		// 		//check char DONE
 		// 		/* code */
 		// 	}
-			
 		// 	/* code */
 		// }
-		
 		//surrounded by wall DONE
 		//floodfill_check? DONE
 		//order of elements DONE
 		//space between elements DONE
 		//save data (size, 2d array) DONE
-
 		return (1);
 }

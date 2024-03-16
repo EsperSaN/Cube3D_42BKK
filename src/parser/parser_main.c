@@ -6,10 +6,9 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:44:11 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/17 01:02:55 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/17 01:19:41 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../cube.h"
 #define INVALID_FILE "The given file must contain .cub extention"
@@ -25,7 +24,6 @@ int	ft_isspace(char c)
 		return (1);
 	return (0);
 }
-
 
 int	is_file_readable(char *file_name)
 {

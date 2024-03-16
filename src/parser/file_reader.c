@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:52:50 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/17 01:04:07 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/17 01:14:11 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int	ft_check_endl(char *str)
 {
-	int	i;
-	int	j;
-	int	len;
-	int flag;
-	char *tmp;
+	int		i;
+	int		j;
+	int		len;
+	int		flag;
+	char	*tmp;
 
 	flag = 0;
 	i = 0;
 	j = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == '\n')
 		{
@@ -32,18 +32,17 @@ int	ft_check_endl(char *str)
 				len = 0;
 			tmp = ft_substr(str, j, len);
 			//printf("[%s]\n", tmp);
-			if(ft_is_map(tmp) && len > 0)
+			if (ft_is_map(tmp) && len > 0)
 				flag = 1;
 			//printf("%d %d\n", len, flag);
-			if(len == 0 && flag)
-				return(0);
+			if (len == 0 && flag)
+				return (0);
 			j = i + 1;
 			free(tmp);
 		}
-
 		i++;
 	}
-	return(1);
+	return (1);
 }
 
 int	file_reader(t_data *data, int fd)
@@ -67,7 +66,7 @@ int	file_reader(t_data *data, int fd)
 	if (read_count < -1)
 		perror("FILE READER : ");
 	data->raw_data = ft_split(chdata, '\n');
-	if(ft_check_endl(chdata) == 0)
+	if (ft_check_endl(chdata) == 0)
 	{
 		//printf("Empty line between map\n");
 		free(chdata);

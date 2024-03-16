@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:55:42 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/17 00:56:10 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/17 01:15:50 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_get_color(t_data *data, char *str, int mode)
 {
-	char **num;
-	int	i;
+	char	**num;
+	int		i;
 
 	num = ft_split(str, ',');
 	i = 0;
@@ -25,7 +25,7 @@ int	ft_get_color(t_data *data, char *str, int mode)
 			return (0);//error not 0-255
 		i++;
 	}
-	if (i!=3)
+	if (i != 3)
 		return (0);//error not 3 elements
 	i = 0;
 	while (num[i])
