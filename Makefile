@@ -26,7 +26,7 @@ endif
 
 HEADER_FILE = $(SRC_DIR)cube.h $(SRC_DIR)setting.h $(PARSER_DIR)parser.h $(RENDER_DIR)render.h $(UTILL_DIR)utill.h $(CONTROL_DIR)control.h
 
-PARSER_FILE = parser_main.c
+PARSER_FILE = file_reader.c flood_fill.c get_color.c is_mapdata_valid.c parser_main.c
 PARSER_DIR = $(SRC_DIR)parser/
 PARSER_SRCS = $(addprefix $(PARSER_DIR), $(PARSER_FILE))
 
