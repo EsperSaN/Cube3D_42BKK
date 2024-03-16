@@ -6,49 +6,28 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:38:38 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/10 00:05:36 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/16 22:23:00 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cube.h"
-#include "../lib/MLX42_codam/include/MLX42/MLX42.h"
-int	main()
-{
 
-	ft_putstr_fd("hello", 2);
-	mlx_t *mlx = mlx_init(200,200, "hello", true);
-	mlx_loop(mlx);
-	return(1);
-	// void *img = mlx_png_file_to_image(data.mlx, "./test.png",&w,&h);
-	// printf("%s , ", (char* )img);
-	// int i;
-	// i = 0;
-	// while (data.maps_data->maps_array[i])
-	// {
-	// 	int j = 0;
-	// 	while (data.maps_data->maps_array[i][j] != NULL)
-	// 	{
-	// 		printf("%c",data.maps_data->maps_array[i][j]);
-	// 		j++;
-	// 	}
-	// 	printf("\n");
-	// 	i++;
-	// }
-	// printf("?????? %f\n", PI);
-	// data.player.pos.x = 100;
-	// data.player.pos.y = 100;
-	// data.player.angle = 0;
-	// data.key.is_keypress = 0;
-	// data.maps_data->maps_hight = i--;
-	// data.maps_data->maps_width = (ft_strlen(data.maps_data->maps_array[0]));
-	// printf("w = %d h = %d\n" ,data.maps_data->maps_width ,data.maps_data->maps_hight);
-	// printf("start init\n");
-	// printf("init fin\n");
-	// data.game_window = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HIGHT, WIN_TITLE);
-	// printf("data win with %d and %d\n",data.maps_data->maps_width, data.maps_data->maps_hight);
-	// data.data_window = mlx_new_window(data.mlx, data.maps_data->maps_width * MINIMAPS_SCALE, data.maps_data->maps_hight * MINIMAPS_SCALE, "data");
-	// printf("init fin\n");
-	// control(&data);
-	// mlx_loop_hook(data.mlx, render_frame, &data);
-	// mlx_loop(data.mlx);
+
+int	main(int ac, char **av)
+{
+	t_data	data;
+
+	if (ac != 2)
+		return (puterror(NO_ARG), FAIL);
+	if (init_data(&data, av[1]) != SUCCESS)
+		return (puterror(INIT_FAIL), FAIL);
+	clear_frame(data.game_frm, get_rgb(255, 255, 255, 1000));
+	clear_frame(data.map_frm, get_rgb(0, 0, 0, 1000));
+	draw_maps(&data, data.map_frm);
+	print_maps_data(data.maps_data->maps_array);
+	mlx_loop_hook(data.mlx, render_frame, &data);
+	mlx_loop(data.mlx);
+	mlx_delete_image(data.mlx, data.game_frm);
+	mlx_delete_image(data.mlx, data.map_frm);
+	mlx_terminate(data.mlx);
 }

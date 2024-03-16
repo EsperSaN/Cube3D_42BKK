@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:00:41 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/09 22:56:01 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/16 21:17:46 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,19 @@
 # define CUBE_H
 
 # include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <math.h>
 # include "../lib/MLX42_codam/include/MLX42/MLX42.h"
 # include "../lib/libft/libft.h"
-#ifdef __APPLE__
-# define W 13
-# define A 0
-# define S 1
-# define D 2
-# define M 46
-# define LEFT_ARROW 123
-# define RIGHT_ARROW 124
-# define ESC 53
-#endif
 
-# define INVALID_ARG "No argument supplied"
+
+# define SUCCESS 1
+# define TRUE 1
+# define FALSE 0
 # define FAIL 0
-# define SCREEN_HIGHT 800
-# define SCREEN_WIDTH 800
-# define MINIMAPS_SCALE 20
-# define WIN_TITLE "RAYCASTING"
-
-#define PIXEL_SPEED 2
-#define ROTATE_SPEED 1
-#define PI 3.14123456789098765432123456789876543212345678909876543f
-
+# define PI 3.14123456789098765432123456789876543212345678909876543f // it will cut to 6 digit by float
 
 typedef struct s_positon
 {
@@ -45,24 +34,20 @@ typedef struct s_positon
 	float	y;
 }	t_pos;
 
+typedef struct s_position_int
+{
+	int		x;
+	int		y;
+}	t_pos_int;
+
 typedef struct s_vector
 {
-	unsigned int	magnitude;
+	float			magnitude;
 	t_pos			tail;
 	t_pos			head;
 	t_pos			unit;
 }	t_vector;
 
-typedef struct s_frame_image
-{
-	void	*image;
-	char	*address;
-	int		bpp; // bit per pixel
-	int		line_length;
-	int		endian;
-	int		frame_width;
-	int		frame_hight;
-}	t_frame;
 
 typedef struct s_texture_data
 {
@@ -83,41 +68,48 @@ typedef struct s_map_data
 	t_texture	*texture;
 }	t_maps;
 
-typedef struct s_keybind
-{
-	int		w_key;
-	int		a_key;
-	int		s_key;
-	int		d_key;
-	int		m_key;
-	int		left_key;
-	int		right_key;
-}	t_key;
 
-typedef	struct s_player_data
+typedef struct s_player_data
 {
 	t_pos	pos;
+	t_pos	dir;
+	t_pos	pane;
+	// t_pos	camera;
+	float	fov;
 	float	angle;
-}	t_player ;
+}	t_player;
+
+typedef struct s_ray_data
+{
+	t_pos		camera;
+	t_pos 		ray_dir;
+	t_pos		side_distant;
+	t_pos		delta_distant;
+	t_pos_int 	step;
+	t_pos_int 	pos;
+	int			color;
+	float		perp_wall_distant;
+	int			is_hit;
+	int			hit_side;
+	int			line_s;
+	int			line_e;
+	int			line_hight;
+}	t_raydata;
 
 typedef struct s_variable
 {
 	t_player	player;
-	void		*mlx;
-	void		*game_window;
-	void		*data_window;
-	t_key		key;
+	mlx_t		*mlx;
+	mlx_image_t	*map_frm;
+	mlx_image_t	*game_frm;
 	t_maps		*maps_data;
 }	t_data;
+# include "./setting.h"
+# include "./control/control.h"
+# include "./parser/parser.h"
+# include "./render/render.h"
+# include "./utill/utill.h"
 
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <math.h>
-// # include "./control/control.h"
-// # include "./parser/parser.h"
-// # include "./render/render.h"
-// # include "./utill/utill.h"
 
 
 
