@@ -2,7 +2,7 @@ NAME = cub3d
 
 CC = clang
 
-CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
+# CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
 
 SRC_DIR = ./src/
 
@@ -24,11 +24,31 @@ else
 MLXLINK_FLAG = -lglfw3 -lopengl32 -lgdi32
 endif
 
-SRCS = ./src/main.c
+HEADER_FILE = $(SRC_DIR)cube.h $(SRC_DIR)setting.h $(PARSER_DIR)parser.h $(RENDER_DIR)render.h $(UTILL_DIR)utill.h $(CONTROL_DIR)control.h
 
-OBJS = $(SRCS:.c=.o)
+PARSER_FILE = parser_main.c
+PARSER_DIR = $(SRC_DIR)parser/
+PARSER_SRCS = $(addprefix $(PARSER_DIR), $(PARSER_FILE))
 
-%.o: %.c
+UTILL_FILE = put_error.c init_data.c
+UTILL_DIR = $(SRC_DIR)utill/
+UTILL_SRCS = $(addprefix $(UTILL_DIR), $(UTILL_FILE))
+
+RENDER_FILE = draw_func.c map_render.c render_main.c img_helper.c ray_caster.c
+RENDER_DIR = $(SRC_DIR)render/
+RENDER_SRCS = $(addprefix $(RENDER_DIR), $(RENDER_FILE))
+
+CONTROL_FILE = control_main.c
+CONTROL_DIR = $(SRC_DIR)control/
+CONTROL_SRCS = $(addprefix $(CONTROL_DIR), $(CONTROL_FILE))
+
+SRCS = $(UTILL_SRCS)  $(PARSER_SRCS) $(RENDER_SRCS) $(CONTROL_SRCS) ./src/main.c
+
+
+
+OBJS = $(SRCS:.c=.o) 
+
+%.o: %.c $(HEADER_FILE)
 	$(CC) $(CFLAGS) $(INCLUDE_FLAG) -c $< -o $@
 
 all : libft libmlx $(NAME)
