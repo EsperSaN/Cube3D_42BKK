@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:58:20 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/16 20:30:26 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/17 00:47:50 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		get_maps_scale(t_data *d, mlx_image_t *img)
 	int	scale;
 
 	scale_x = img->width / d->maps_data->maps_width;
-	scale_y = img->height / d->maps_data->maps_hight;
+	scale_y = img->height / d->maps_data->maps_height;
 	if (scale_x < scale_y)
 		scale = scale_x;
 	else
