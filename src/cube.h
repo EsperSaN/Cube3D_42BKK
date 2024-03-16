@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:00:41 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/16 21:17:46 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/17 01:05:54 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ typedef struct s_vector
 
 typedef struct s_texture_data
 {
-	char	**north;
-	char	**south;
-	char	**west;
-	char	**east;
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
 	int		floor[3];
 	int		ceil[3];
 }	t_texture;
@@ -111,6 +111,7 @@ typedef struct s_variable
 	mlx_image_t	*map_frm;
 	mlx_image_t	*game_frm;
 	t_maps		*maps_data;
+	char   		**raw_data;
 }	t_data;
 
 # include "./setting.h"
