@@ -1,96 +1,75 @@
-################### Product NAME ############################
-NAME = cube3d
+NAME = cub3d
 
-################ Compiler and FLAGS #########################
+CC = clang
 
-CC = gcc -v
+# CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
 
-#CFLAGS = -Wall -Werror -Wextra
+SRC_DIR = ./src/
 
-# first init should have this command --> sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
+LIB_DIR = ./lib/
+LIB_MLX_DIR = $(LIB_DIR)MLX42_codam/
+LIB_FT_DIR = $(LIB_DIR)libft/
+LIB_FILE = $(LIB_FT_DIR)libft.a $(LIB_MLX_DIR)build/libmlx42.a
 
-####################### FILE ################################
-
-MAIN_SRC = ./src/main.c
-
-UTILL_FILE = init_data.c put_error.c
-
-RENDER_FILE = render_main.c map_render.c 
-
-PARSER_FILE = parser_main.c map_reader.c
-
-CONTROL_FILE = control_main.c key_hook.c
-
-LIBFT_FILE = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c\
-ft_isprint.c ft_itoa.c ft_lstadd_back.c	ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c\
-ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c ft_memchr.c ft_memcmp.c\
-ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c\
-ft_putstr_fd.c ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c\
-ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c\
-ft_substr.c ft_tolower.c ft_toupper.c
-
-####################### DIR ################################
-RENDER_DIR = ./src/render/
-PARSER_DIR = ./src/parser/
-CONTROL_DIR = ./src/control/
-UTILL_DIR = ./src/utill/
-LIBFT_DIR = ./src/utill/libft/
-
-###################### DIR and PATH #########################
-RENDER_SRC = $(addprefix $(RENDER_DIR), $(RENDER_FILE))
-PARSER_SRC = $(addprefix $(PARSER_DIR), $(PARSER_FILE))
-CONTROL_SRC = $(addprefix $(CONTROL_DIR), $(CONTROL_FILE))
-UTILL_SRC = $(addprefix $(UTILL_DIR), $(UTILL_FILE))
-LIBFT_SRC = $(addprefix $(LIBFT_DIR), $(LIBFT_FILE))
-
-###################### to compile mlx library system condition #########################
+LIB_LINK = -L$(LIB_FT_DIR) -L$(LIB_MLX_DIR)build
+INCLUDE_FLAG = -I$(LIB_FT_DIR) -I$(LIB_MLX_DIR)build
+# INCLUDE_FLAG = -Ilibft -Ilibmlx42 // need to clarify this
 
 UNAME = $(shell uname)
-ifeq ($(UNAME), Darwin)
-MLX_DIR = ./minilibx/mlx-mac/
-MLXFLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
-%.o: %.c
-	$(CC) $(CFLAGS) -I$(MLX_DIR) -c $< -o $@
+ifeq ($(UNAME), Linux)
+MLXLINK_FLAG = -ldl -lglfw -pthread -lm
+else ifeq ($(UNAME), Darwin)
+MLXLINK_FLAG = -framework Cocoa -framework OpenGL -framework IOKit -L/opt/homebrew/opt/glfw/lib -lglfw
 else
-MLXFLAGS = -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz
-MLX_DIR = ./minilibx/mlx-linux/
-%.o: %.c
-	$(CC) $(CFLAGS) -I/usr/include -I$(MLX_DIR) -O3 -c $< -o $@
+MLXLINK_FLAG = -lglfw3 -lopengl32 -lgdi32
 endif
 
-########################################################################################
+HEADER_FILE = $(SRC_DIR)cube.h $(SRC_DIR)setting.h $(PARSER_DIR)parser.h $(RENDER_DIR)render.h $(UTILL_DIR)utill.h $(CONTROL_DIR)control.h
 
-RM = rm -rf
+PARSER_FILE = parser_main.c
+PARSER_DIR = $(SRC_DIR)parser/
+PARSER_SRCS = $(addprefix $(PARSER_DIR), $(PARSER_FILE))
 
-SRC =  $(RENDER_SRC) $(PARSER_SRC) $(CONTROL_SRC) $(UTILL_SRC) $(LIBFT_SRC) $(MAIN_SRC)
+UTILL_FILE = put_error.c init_data.c
+UTILL_DIR = $(SRC_DIR)utill/
+UTILL_SRCS = $(addprefix $(UTILL_DIR), $(UTILL_FILE))
 
-OBJ = $(SRC:.c=.o)
+RENDER_FILE = draw_func.c map_render.c render_main.c img_helper.c ray_caster.c
+RENDER_DIR = $(SRC_DIR)render/
+RENDER_SRCS = $(addprefix $(RENDER_DIR), $(RENDER_FILE))
 
-all : $(NAME)
+CONTROL_FILE = control_main.c
+CONTROL_DIR = $(SRC_DIR)control/
+CONTROL_SRCS = $(addprefix $(CONTROL_DIR), $(CONTROL_FILE))
 
-MLX_LIB = $(MLX_DIR)libmlx.a
+SRCS = $(UTILL_SRCS)  $(PARSER_SRCS) $(RENDER_SRCS) $(CONTROL_SRCS) ./src/main.c
 
-$(NAME) : $(OBJ) 
-ifeq ($(shell test -r $(MLX_LIB) && echo yes), yes)
-		@echo "mlx library exists"
-else
-		@echo "mlx library does not exist"
-		make mlx_init
-endif
-	$(CC) $(CFLAGS) $(OBJ) $(MLXFLAGS) -o ${NAME}
+
+
+OBJS = $(SRCS:.c=.o) 
+
+%.o: %.c $(HEADER_FILE)
+	$(CC) $(CFLAGS) $(INCLUDE_FLAG) -c $< -o $@
+
+all : libft libmlx $(NAME)
+
+libft :
+	@make -C $(LIB_FT_DIR)
+
+libmlx :
+	@cmake $(LIB_MLX_DIR) -B $(LIB_MLX_DIR)build && make -C $(LIB_MLX_DIR)build -j4
+
+$(NAME) : $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIB_FILE) $(LIB_LINK) $(MLXLINK_FLAG)
 
 clean :
-	$(RM) $(OBJ)
+	rm -f $(OBJS)
 
 fclean : clean
-	$(RM) $(NAME)
-
-mlx_init :
-	make -C $(MLX_DIR)
-
-mlx_clean :
-	make clean -C $(MLX_DIR)
+	make -C $(LIB_FT_DIR) fclean
+	make -C $(LIB_MLX_DIR)build/ clean
+	rm -f $(NAME)
 
 re : fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re libmlx

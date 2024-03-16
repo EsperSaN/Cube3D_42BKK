@@ -6,6 +6,7 @@
 /*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:44:11 by pruenrua          #+#    #+#             */
+/*   Updated: 2024/03/07 14:51:33 by pruenrua         ###   ########.fr       */
 /*   Updated: 2024/03/08 01:36:26 by tpoungla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -490,7 +491,7 @@ int	is_file_valid(char *file_name)
 	return (puterror("File is Valid"), 1);
 }
 
-int	file_reader(t_var *data, int fd)
+int	file_reader(t_maps *maps, int fd)
 {
 	char	*tmp;
 	char	*chdata;
