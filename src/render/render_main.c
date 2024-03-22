@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:58:50 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/22 19:23:19 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:27:52 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	draw_floor(t_data *d, mlx_image_t *frm, int color)
 {
 	int x;
 	putreport("IN FLOOR\n");
-	x = 0;
+	x = 1;
 	while (x < frm->width)
 	{
-		draw_verline(frm, x, frm->height / 2, frm->height, color);
+		draw_verline(frm, x, frm->height / 2, frm->height - 1 , color);
 		x++;
 	}
 
