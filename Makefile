@@ -34,7 +34,7 @@ UTILL_FILE = put_error.c init_data.c
 UTILL_DIR = $(SRC_DIR)utill/
 UTILL_SRCS = $(addprefix $(UTILL_DIR), $(UTILL_FILE))
 
-RENDER_FILE = draw_func.c map_render.c render_main.c img_helper.c ray_caster.c
+RENDER_FILE = draw_func.c map_render.c render_main.c img_helper.c ray_caster.c texture_baker.c
 RENDER_DIR = $(SRC_DIR)render/
 RENDER_SRCS = $(addprefix $(RENDER_DIR), $(RENDER_FILE))
 

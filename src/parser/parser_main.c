@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:44:11 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/07 14:51:33 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/11 00:37:33 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,9 @@ t_maps	*maps_parser(char *file_name)
 		return (0);
 	fd = open(file_name, O_RDONLY | O_CLOEXEC);
 	if (fd < 0)
-		return (perror("PARSER ERROR : "), 0);
+		return (perror("PARSER ERROR : "), NULL);
 	if (!file_reader(maps_data, fd))
-		return (puterror("VALID , READ : not right"), 0);
+		return (puterror("VALID , READ : not right"), NULL);
 	// if (!is_mapdata_valid(maps_data))
 	// 	return (puterror("data in file not good"), 0);
 	// if (!is_map_playable(maps_data))

@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:00:41 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/16 21:17:46 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:53:26 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@
 # define FALSE 0
 # define FAIL 0
 # define PI 3.14123456789098765432123456789876543212345678909876543f // it will cut to 6 digit by float
+
+typedef struct s_texture
+{
+	int				width;
+	int				height;
+	unsigned int	**tex_pixel;
+}	t_tex;
 
 typedef struct s_positon
 {

@@ -34,12 +34,12 @@ void rotate_player(t_data *d)
 
 int	get_player_pos(t_data *d)
 {
-	d->player.pos.x = 10 - 0.5;
-	d->player.pos.y = 10 - 0.5;
-	d->player.dir.x = 1;
-	d->player.dir.y = 0;
-	d->player.pane.x = 0;
-	d->player.pane.y = 0.66;
+	d->player.pos.x = 2 - 0.5;
+	d->player.pos.y = 2 - 0.5;
+	d->player.dir.x = 0;
+	d->player.dir.y = 1;
+	d->player.pane.x = -0.66;
+	d->player.pane.y = 0;
 	rotate_player(d);
 	printf("init dir x = %f y = %f\n", d->player.dir.x, d->player.dir.y);
 	return (1);

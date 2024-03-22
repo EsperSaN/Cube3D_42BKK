@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 20:24:29 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/16 22:51:17 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/17 19:33:59 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	ray_cast(t_data *d, mlx_image_t *frm)
 		r_d.pos.x = (int)d->player.pos.x;
 		r_d.pos.y = (int)d->player.pos.y;
 		r_d.is_hit = 0;
+
 		if (r_d.ray_dir.x == 0)
 			r_d.ray_dir.x = 1e30;
 		r_d.delta_distant.x = fabs(1 / r_d.ray_dir.x);
@@ -75,6 +76,7 @@ int	ray_cast(t_data *d, mlx_image_t *frm)
 			if (d->maps_data->maps_array[r_d.pos.y][r_d.pos.x] != '0')
 				r_d.is_hit = 1;
 		}
+
 		if (r_d.hit_side == 0)
 			r_d.perp_wall_distant = (r_d.side_distant.x - r_d.delta_distant.x);
 		else
@@ -91,9 +93,7 @@ int	ray_cast(t_data *d, mlx_image_t *frm)
 		if (r_d.hit_side == 1)
 			r_d.color = get_rgb(255, 0, 0, 1000);
 		else
-			r_d.color = get_rgb(0,255 ,0, 500);
-		if (x == frm->width / 2)
-			printf("when x == %d hight = %d to %d\n", x, r_d.line_s, r_d.line_e);
+			r_d.color = get_rgb(255,0 ,0, 500);
 		draw_verline(frm, x, r_d.line_s, r_d.line_e, r_d.color);
 		x++;
 	}
