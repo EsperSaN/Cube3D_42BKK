@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 20:24:29 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/17 19:33:59 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:24:51 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ray_cast(t_data *d, mlx_image_t *frm)
 {
 	int			x;
 	t_raydata	r_d;
-
+	putreport("IN RC\n");
 	x = 0;
 	while (x < frm->width)
 	{
@@ -58,7 +58,7 @@ int	ray_cast(t_data *d, mlx_image_t *frm)
 			r_d.side_distant.y = \
 			(r_d.pos.y + 1.0 - d->player.pos.y) * r_d.delta_distant.y;
 		}
-
+		putreport("ST RAY\n");
 		while (r_d.is_hit == 0)
 		{
 			if (r_d.side_distant.x < r_d.side_distant.y)
@@ -76,6 +76,7 @@ int	ray_cast(t_data *d, mlx_image_t *frm)
 			if (d->maps_data->maps_array[r_d.pos.y][r_d.pos.x] != '0')
 				r_d.is_hit = 1;
 		}
+		putreport("END RC\n");
 
 		if (r_d.hit_side == 0)
 			r_d.perp_wall_distant = (r_d.side_distant.x - r_d.delta_distant.x);
@@ -94,7 +95,10 @@ int	ray_cast(t_data *d, mlx_image_t *frm)
 			r_d.color = get_rgb(255, 0, 0, 1000);
 		else
 			r_d.color = get_rgb(255,0 ,0, 500);
+		putreport("R data clear\n");
 		draw_verline(frm, x, r_d.line_s, r_d.line_e, r_d.color);
+		putreport("DRAW VERLINE\n");
 		x++;
 	}
+	putreport("RC DONE LOOP\n");
 }

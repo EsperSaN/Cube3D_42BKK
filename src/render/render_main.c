@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:58:50 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/22 19:04:28 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:23:19 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	draw_floor(t_data *d, mlx_image_t *frm, int color)
 {
 	int x;
-
+	putreport("IN FLOOR\n");
 	x = 0;
 	while (x < frm->width)
 	{
@@ -29,6 +29,7 @@ void	draw_ceil(t_data *d, mlx_image_t *frm, int color)
 {
 	int x;
 
+	putreport("IN CEIL\n");
 	x = 0;
 	while (x < frm->width)
 	{
@@ -40,6 +41,7 @@ void	draw_ceil(t_data *d, mlx_image_t *frm, int color)
 
 int 	render_frame(t_data *d)
 {
+	putreport("IN RENDER\n");
 	if (key_hook(d) == 1);
 	{
 	clear_frame(d->map_frm, get_rgb(0, 0, 0, 1000));

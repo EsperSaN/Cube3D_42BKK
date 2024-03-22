@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:38:38 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/22 19:03:50 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:22:18 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	main(int ac, char **av)
 		return (puterror(INIT_FAIL), FAIL);
 	clear_frame(data.game_frm, get_rgb(255, 255, 255, 1000));
 	clear_frame(data.map_frm, get_rgb(0, 0, 0, 1000));
+	putreport("CLEAR FRME DONE\n");
 	// draw_maps(&data, data.map_frm);
 	// print_maps_data(data.maps_data->maps_array);
 	// mlx_texture_t *t = mlx_load_png("./src/pics/mossy.png");
