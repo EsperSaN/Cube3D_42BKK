@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data->c                                        :+:      :+:    :+:   */
+/*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:10:40 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/14 20:44:26 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/23 14:14:48 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	get_player_pos(t_data *d)
 	d->player.pos.y = 2 - 0.5;
 	d->player.dir.x = 0;
 	d->player.dir.y = 1;
-	d->player.pane.x = -0.66;
+	d->player.pane.x = -fabs((tan(get_rad(FIELD_OF_VIEW)/2)));
+	printf("pane is %f\n", d->player.pane.x);
 	d->player.pane.y = 0;
 	rotate_player(d);
 	printf("init dir x = %f y = %f\n", d->player.dir.x, d->player.dir.y);

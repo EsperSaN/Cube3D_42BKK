@@ -6,14 +6,14 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:38:38 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/22 19:22:18 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/23 14:16:40 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cube.h"
 
 // int main(int ac, char **av)
-// {
+//{
 // 	t_data mlx;
 // 	t_tex *tex;
 
@@ -33,11 +33,16 @@
 int	main(int ac, char **av)
 {
 	t_data	data;
+	//t_data 	de;
 
 	if (ac != 2)
 		return (puterror(NO_ARG), FAIL);
 	if (init_data(&data, av[1]) != SUCCESS)
 		return (puterror(INIT_FAIL), FAIL);
+	//init_data(&de, av[1]);
+	//mlx_image_t *maps = mlx_new_image(de.mlx, SCREEN_WIDTH, SCREEN_HIGHT);
+
+	//draw_maps(&de , maps);
 	clear_frame(data.game_frm, get_rgb(255, 255, 255, 1000));
 	clear_frame(data.map_frm, get_rgb(0, 0, 0, 1000));
 	putreport("CLEAR FRME DONE\n");
