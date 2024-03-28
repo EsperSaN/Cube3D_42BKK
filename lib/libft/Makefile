@@ -26,9 +26,9 @@ B_OBJ = $(BONUS:.c=.o)
 
 OBJ = $(SRC:.c=.o)
 
-CC = gcc
+CC = clang
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -Wunreachable-code
 
 all : $(NAME)
 

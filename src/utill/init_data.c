@@ -51,13 +51,13 @@ int	init_data(t_data *data, char *maps_file)
 	data->mlx = NULL;
 	data->maps_data = NULL;
 	data->player.fov = FIELD_OF_VIEW;
-	data->maps_data = maps_parser(maps_file);
+	data->maps_data = maps_parser(data, maps_file);
 	if (data->maps_data == NULL)
 		return (puterror(PARSER_FAIL), FAIL);
 	data->maps_data->maps_width = ft_strlen(data->maps_data->maps_array[0]);
 	int i ;
 	for (i = 0; data->maps_data->maps_array[i]; i++);
-	data->maps_data->maps_hight = i;
+	data->maps_data->maps_height = i;
 	putreport("get maps done");
 	get_player_pos(data);
 	data->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HIGHT, WIN_TITLE, FALSE);
