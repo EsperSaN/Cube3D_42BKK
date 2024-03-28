@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pruenrua <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/10 20:55:46 by pruenrua          #+#    #+#              #
-#    Updated: 2022/09/03 15:16:20 by pruenrua         ###   ########.fr        #
+#    Updated: 2024/03/11 00:17:42 by pruenrua         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ B_OBJ = $(BONUS:.c=.o)
 
 OBJ = $(SRC:.c=.o)
 
-CC = gcc
+CC = clang
 
 CFLAGS = -Wall -Werror -Wextra
 
