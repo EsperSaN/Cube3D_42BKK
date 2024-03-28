@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 20:24:29 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/22 19:24:51 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:21:29 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ray_cast(t_data *d, mlx_image_t *frm)
 	x = 0;
 	while (x < frm->width)
 	{
+
+		// prepare ray angle to cast to
 		r_d.camera.x = 2 * (x / (float)frm->width) - 1.0f;
 		r_d.ray_dir.x = d->player.dir.x + d->player.pane.x * r_d.camera.x;
 		r_d.ray_dir.y = d->player.dir.y + d->player.pane.y * r_d.camera.x; 
@@ -58,7 +60,11 @@ int	ray_cast(t_data *d, mlx_image_t *frm)
 			r_d.side_distant.y = \
 			(r_d.pos.y + 1.0 - d->player.pos.y) * r_d.delta_distant.y;
 		}
+
+		// init done
 		putreport("ST RAY\n");
+
+		// start ray casting
 		while (r_d.is_hit == 0)
 		{
 			if (r_d.side_distant.x < r_d.side_distant.y)
@@ -77,20 +83,25 @@ int	ray_cast(t_data *d, mlx_image_t *frm)
 				r_d.is_hit = 1;
 		}
 		putreport("END RC\n");
-
+		// end raycasting
 		if (r_d.hit_side == 0)
 			r_d.perp_wall_distant = (r_d.side_distant.x - r_d.delta_distant.x);
 		else
 			r_d.perp_wall_distant = (r_d.side_distant.y - r_d.delta_distant.y);
-
+		
 		r_d.line_hight = (int)(frm->height / r_d.perp_wall_distant);
 		r_d.line_s = -r_d.line_hight / 2 + frm->height / 2;
+
+		// above here we have tht ray that perpanicular to plane (normalize)
+		// use the code be_low to init the size of the cubwe????
+		// r_d.line_s -= 200;
 		if (r_d.line_s < 0)
 			r_d.line_s = 0;
 		r_d.line_e = (r_d.line_hight / 2) + (frm->height / 2);
 		if (r_d.line_e >= frm->height)
 			r_d.line_e = frm->height - 1;
 
+		// put the color to the line above
 		if (r_d.hit_side == 1)
 			r_d.color = get_rgb(255, 0, 0, 1000);
 		else

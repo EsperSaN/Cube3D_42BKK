@@ -22,7 +22,7 @@
 // 	unsigned int	**tex_pixel;
 // }	t_tex;
 
-int		render_frame(t_data *data);
+int		render_frame(void *data);
 void	draw_maps(t_data *d, mlx_image_t *img);
 void	draw_square(mlx_image_t *frame, t_pos pos, int size, int color);
 void	clear_frame(mlx_image_t *frm, int color);

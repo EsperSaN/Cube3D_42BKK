@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:58:50 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/22 19:27:52 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:08:49 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,15 @@ void	draw_ceil(t_data *d, mlx_image_t *frm, int color)
 
 }
 
-int 	render_frame(t_data *d)
+int 	render_frame(void *data)
 {
+	t_data *d;
+
+	d = (t_data *)data;
 	putreport("IN RENDER\n");
 	if (key_hook(d) == 1);
 	{
-	clear_frame(d->map_frm, get_rgb(0, 0, 0, 1000));
+	//clear_frame(d->map_frm, get_rgb(0, 0, 0, 1000));
 	clear_frame(d->game_frm, get_rgb(0, 0, 0, 1000));
 	//draw_maps(d, d->map_frm);
 	draw_ceil(d, d->game_frm, get_rgb(255, 255, 255, 1000));

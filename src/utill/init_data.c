@@ -6,7 +6,7 @@
 /*   By: pruenrua <pruenrua@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:10:40 by pruenrua          #+#    #+#             */
-/*   Updated: 2024/03/23 14:14:48 by pruenrua         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:17:36 by pruenrua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void rotate_player(t_data *d)
 
 int	get_player_pos(t_data *d)
 {
-	d->player.pos.x = 2 - 0.5;
-	d->player.pos.y = 2 - 0.5;
+	d->player.pos.x = 5 - 0.5;
+	d->player.pos.y = 5 - 0.5;
 	d->player.dir.x = 0;
 	d->player.dir.y = 1;
 	d->player.pane.x = -fabs((tan(get_rad(FIELD_OF_VIEW)/2)));
@@ -65,9 +65,7 @@ int	init_data(t_data *data, char *maps_file)
 		return (puterror(MLX_FAIL), FAIL);
 	putreport("get mlx done");
 	data->game_frm = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HIGHT);
-	data->map_frm = mlx_new_image(data->mlx, SCREEN_WIDTH / 2, SCREEN_HIGHT);
 	mlx_image_to_window(data->mlx, data->game_frm, 0, 0);
-	//mlx_image_to_window(data->mlx, data->map_frm, 0, 0);
 	putreport("get frm done");
 	return (SUCCESS);
 }
